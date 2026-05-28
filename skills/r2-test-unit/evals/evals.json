@@ -1,0 +1,67 @@
+{
+  "skill_name": "r2-test-unit",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Crie testes unitários para o arquivo string-utils.ts. Preciso de boa cobertura das funções truncate (com e sem o sufixo customizado), slugify e capitalize, incluindo casos de borda.",
+      "expected_output": "Arquivo .spec.ts sem importações do vitest (pois o projeto usa globals), describe blocks aninhados por função, metodologia AAA marcada com comentários, cobrindo overloads e casos de borda.",
+      "files": ["evals/files/string-utils.ts"],
+      "assertions": [
+        "O arquivo NÃO contém nenhuma linha com 'import' do pacote 'vitest' (o projeto usa globals, conforme CLAUDE.md)",
+        "Todas as descrições de describe e it/test estão em português",
+        "Todos os comentários inline estão em português",
+        "Cada teste contém os comentários // Arrange, // Act e // Assert (ou // Act & Assert quando aplicável)",
+        "Existe um describe raiz para o módulo ou para cada função exportada",
+        "A função truncate tem testes cobrindo tanto a chamada sem sufixo customizado quanto com sufixo customizado",
+        "A função slugify tem testes cobrindo conversão de maiúsculas e caracteres especiais/acentos",
+        "A função capitalize tem teste para string vazia ou nula como caso de borda",
+        "Nenhum membro privado é acessado diretamente (nenhuma notação de colchetes como obj['propriedadePrivada'])"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Crie testes unitários para CartService (arquivo cart.service.ts). Quero cobertura dos métodos add (incluindo quando o item já existe), remove, getTotal com e sem desconto (percentual e fixo), e clear.",
+      "expected_output": "Arquivo .spec.ts sem importações do vitest (pois o projeto usa globals), describe blocks aninhados por método, AAA com comentários, cobrindo overloads de getTotal e casos de borda.",
+      "files": ["evals/files/cart.service.ts"],
+      "assertions": [
+        "O arquivo NÃO contém nenhuma linha com 'import' do pacote 'vitest' (o projeto usa globals, conforme CLAUDE.md)",
+        "Todas as descrições de describe e it/test estão em português",
+        "Cada teste contém os comentários // Arrange, // Act e // Assert (ou // Act & Assert quando aplicável)",
+        "Existe um describe aninhado para o método 'add' com pelo menos dois casos (item novo e item existente)",
+        "Existe um describe aninhado para o método 'getTotal' com pelo menos três casos (sem desconto, desconto percentual, desconto fixo)",
+        "O caso de desconto fixo maior que o subtotal é coberto (resultado deve ser 0, não negativo)",
+        "Nenhum membro privado é acessado diretamente (sem acesso a cart['items'])",
+        "Os testes de diferentes métodos estão em describe blocks separados, não misturados"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Revise o arquivo bad-tests.spec.ts e melhore-o seguindo boas práticas de testes. Os testes cobrem as funções de string-utils.ts e a classe CartService de cart.service.ts.",
+      "expected_output": "Arquivo .spec.ts corrigido com todas as boas práticas: sem imports do vitest (globals está ativo), describe aninhados separando string-utils de CartService, AAA com comentários, descrições em português, sem acesso a membros privados.",
+      "files": ["evals/files/bad-tests.spec.ts", "evals/files/string-utils.ts", "evals/files/cart.service.ts"],
+      "assertions": [
+        "O arquivo NÃO contém nenhuma linha com 'import' do pacote 'vitest' (o projeto usa globals, conforme CLAUDE.md)",
+        "Todas as descrições de describe e it/test estão em português",
+        "Cada teste contém os comentários // Arrange, // Act e // Assert",
+        "Os testes de string-utils e CartService estão em describe blocks separados no nível raiz",
+        "O teste que acessava cart['items'] foi corrigido para usar cart.getItems() ou outro método público",
+        "O arquivo não contém mais chamadas globais para test() sem describe envolvente"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Crie testes unitários para o arquivo string-utils.ts cobrindo truncate (com e sem sufixo customizado), slugify e capitalize com casos de borda. Importante: este projeto usa Vitest com globals: true, então describe, it, expect etc. estão disponíveis globalmente — não precisam ser importados.",
+      "expected_output": "Arquivo .spec.ts sem nenhuma importação do pacote vitest, apenas import do arquivo testado, com describe aninhados, AAA com comentários, descrições em português.",
+      "files": ["evals/files/string-utils.ts"],
+      "assertions": [
+        "O arquivo NÃO contém nenhuma linha com 'import' do pacote 'vitest'",
+        "O arquivo contém ao menos um import do próprio arquivo sendo testado (string-utils)",
+        "Todas as descrições de describe e it/test estão em português",
+        "Cada teste contém os comentários // Arrange, // Act e // Assert (ou // Act & Assert quando aplicável)",
+        "A função truncate tem testes cobrindo tanto a chamada sem sufixo customizado quanto com sufixo customizado",
+        "A função slugify tem testes cobrindo conversão de maiúsculas e caracteres especiais/acentos",
+        "A função capitalize tem teste para string vazia ou nula como caso de borda"
+      ]
+    }
+  ]
+}
