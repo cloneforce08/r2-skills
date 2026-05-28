@@ -1,0 +1,21 @@
+---
+status: {DECISAO_STATUS}
+data: {DATA_STATUS}
+autores:
+  - {DECISAO_AUTOR_1}
+  - {DECISAO_AUTOR_N}
+---
+
+# RDA-{DECISAO_NUMERO}: {DECISAO_TITULO}
+
+## Contexto
+
+{DECISAO_CONTEXTO}
+
+## Decisão
+
+{DECISAO_DESCRICAO}
+
+## Consequêcias
+
+{DECISAO_CONSEQUENCIAS}

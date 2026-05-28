@@ -1,0 +1,22 @@
+{
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/__pycache__/": true
+  },
+  "python.testing.unittestEnabled": true,
+  "python.testing.unittestArgs": [
+    "-m",
+    "unittest",
+    "discover",
+    "-v",
+    "-s",
+    "skills/r2-rda/scripts/tests",
+    "-p",
+    "test_*.py"
+  ],
+  "python.analysis.autoImportCompletions": true
+}
