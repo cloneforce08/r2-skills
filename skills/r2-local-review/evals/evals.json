@@ -1,0 +1,46 @@
+{
+  "skill_name": "r2-local-review",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Revisa o arquivo evals/files/user.service.ts",
+      "expected_output": "Revisão estruturada com: resumo executivo, análise de alto nível, incidentes classificados por severidade (incluindo pelo menos um CRÍTICO pela falta de null-check em getUserPermissions, um ALTO pelo deleteUser otimista, MEDIOs por uso de any e == solto), e pontos positivos.",
+      "files": ["evals/files/user.service.ts"],
+      "assertions": [
+        "Identifica o incidente CRÍTICO em getUserPermissions: acesso a user.permissions sem verificar se user existe",
+        "Identifica o incidente ALTO em deleteUser: remoção do cache local antes de confirmar sucesso do servidor",
+        "Identifica uso de 'any' como problema de tipagem (MÉDIO ou acima)",
+        "Identifica uso de '==' (igualdade fraca) em vez de '===' como problema",
+        "O output usa o template definido: Resumo Executivo com Resultado geral, seção Incidentes com emojis de severidade, seção Pontos Positivos",
+        "Inclui localização específica (arquivo e linha) em pelo menos um incidente",
+        "Resultado geral é ❌ Reprovado (há incidente CRÍTICO)"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Por favor faz uma revisão do componente em evals/files/checkout.component.ts",
+      "expected_output": "Revisão estruturada identificando: assinatura sem unsubscribe (memory leak - ALTO), falta de tratamento de erro no subscribe (ALTO), console.log em produção (BAIXO), uso de *ngIf/*ngFor em vez de @if/@for (MÉDIO), falta de OnPush (MÉDIO), loop manual no calculateTotal em vez de reduce (BAIXO/SUGESTÃO), uso de constructor injection em vez de inject() (MÉDIO). Pontos positivos devem incluir uso de standalone component.",
+      "files": ["evals/files/checkout.component.ts"],
+      "assertions": [
+        "Identifica a assinatura sem unsubscribe como memory leak (ALTO ou CRÍTICO)",
+        "Identifica falta de tratamento de erro no subscribe de placeOrder",
+        "Aponta uso de *ngIf e *ngFor em vez de @if e @for (sintaxe de control flow Angular moderno)",
+        "Aponta ausência de ChangeDetectionStrategy.OnPush no decorador",
+        "Aponta uso de constructor injection em vez de inject()",
+        "O output usa o template: Resumo Executivo com Resultado geral, seção Incidentes, seção Pontos Positivos",
+        "Resultado geral é ⚠️ Aprovado com ressalvas ou ❌ Reprovado (há incidentes ALTO)"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "pode fazer um code review?",
+      "expected_output": "O skill deve PARAR e perguntar qual arquivo ou escopo deve ser revisado, sem iniciar a análise. Não deve inventar um escopo ou assumir que deve revisar o projeto inteiro.",
+      "files": [],
+      "assertions": [
+        "Não realiza nenhuma análise de código",
+        "Pergunta explicitamente ao usuário qual arquivo, arquivos, ou escopo deve ser revisado",
+        "A resposta é curta — apenas a pergunta, sem análise especulativa"
+      ]
+    }
+  ]
+}
